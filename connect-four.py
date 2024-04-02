@@ -6,8 +6,7 @@ def main():
     board = initialiseBoard()
     displayBoard(board)
     currentplayer = 1
-   
-
+   #maybe do red = 1 yellow = 2
 #initialise/create board
 def initialiseBoard():
     board = []
