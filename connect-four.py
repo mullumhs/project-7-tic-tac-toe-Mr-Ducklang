@@ -1,28 +1,49 @@
 
     # Your code goes here
+board = []
+#inializing board
 
-#main
-def main():
-    board = initialiseBoard()
-    displayBoard(board)
-    currentplayer = 1
-   #maybe do red = 1 yellow = 2
-#initialise/create board
 def initialiseBoard():
-    board = []
-    for _ in range(6):
-        row = []
-        for _ in range(7):
-            row.append('-')
+    for i in range(6):
+        row = ['-','-','-','-','-','-','-']
         board.append(row)
-    return board
     
-#display board
-def displayBoard(board):
-    for row in board:
-        for cell in row:
-            print(cell, end=' ')
+
+#displaying board
+def displayBoard():
+    for i in board:
+        for column in i:
+            print(column, end = '|')
         print()
-    print()
-    
-main()
+
+initialiseBoard()
+displayBoard()
+playercount = 1
+
+#selection
+
+while True:
+
+    token = "X"
+    if playercount % 2 == 0:
+        token = "O"
+    playercount += 1
+
+
+    choice = int(input("Select a column:"))
+    choice -= 1
+
+    for i in range(5, -1, -1):
+       
+        board[5][choice] = token
+    displayBoard()
+
+        
+
+
+
+
+
+
+
+
