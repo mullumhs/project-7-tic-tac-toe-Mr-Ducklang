@@ -25,7 +25,7 @@ def checkhorizontal():
         for column in range(4):
             if (board[row][column] == board[row][column + 1] ==
                 board[row][column + 2] == board[row][column + 3] != '-'):
-                return True
+                  return True
         return False
 
 
