@@ -3,7 +3,7 @@ def main():
 
     #initialise
     def initialiseBoard():
-        print("   1 2 3")
+        
         
         for i in range(3):
             row = ['-','-','-']
@@ -11,7 +11,10 @@ def main():
 
     #Display
     def displayBoard():
-          
+        print()
+        print("=== TIC TAC TOE===")
+        print()
+        print("   1 2 3")
         x = 0
         for i in board:
             if x == 0:
@@ -28,17 +31,48 @@ def main():
                 print(column, end = '|')
             print()
 
-    #WinChecks
-    def checkdiagonal():
-        if board[0][0] == board[1][1] == board[2][2]:
+    #WinCheck
+    def checkwin(): 
+        #first number is down. second is across
+    
+        #across top
+        if board[0][0] == board[0][1] == board[0][2] and board[0][1] != '-':
             return True
-        
-        if board[0][2] == board[1][1] == board[2][0]:
+        #down left
+        if board[0][0] == board[1][0] == board[2][0] and board[1][0] != '-':
+            return True
+        #diagonal 1
+        if board[0][0] == board[1][1] == board[2][2] and board[1][1] != '-':
+            return True
+        #down middle
+        if board[0][1] == board[1][1] == board[2][1] and board[1][1] != '-':
+            return True
+        #across middle
+        if board[1][0] == board[1][1] == board[1][2] and board[1][1] != '-':
+            return True
+        #down right
+        if board[0][2] == board[1][2] == board[2][2] and board[1][2] != '-':
+            return True
+        #across bottom
+        if board[2][0] == board[2][1] == board[2][2] and board[2][1] != '-':
+           return True
+        #diagonal 2
+        if board[0][2] == board[1][1] == board[2][0] and board[1][1] != '-':
             return True
         return False
 
-    #def checkvertical():
-    
+    #Draw Check
+    def CheckDraw():
+
+        for row in board:
+
+            for cell in row:
+
+                if cell == '-':
+
+                    return False
+
+        return True
 
     board = []
     playercount = 1
@@ -57,23 +91,36 @@ def main():
             player = "O"
 
         print()
-        choice = int(input(f"{player}, Select a spot:"))
-        
+        choice = input(f"{player}, Select a column (number): ")
+        choice2 = input("Select a row (letter): ")
+
         print()
         choice -= 1
 
-        for i in range(2, -1, -1):
-                if board[i][choice] == '-':
-                    board[i][choice] = token
-                    playercount += 1
-                    break
+    
+        if board[choice2][choice] == '-':
+            board[choice2][choice] = token
+            playercount += 1
+            break
 
         displayBoard()
-        checkdiagonal()   
+        if checkwin():
+            print()
+            print(f'{player} Wins!')
+            break
+        if CheckDraw():
+            print()
+            print(f'Draw! No Winners!')
+            break  
 
-    print(f"{player} is the winner!")
+        
+
+    
 
 if __name__ == "__main__":
     main()
 
-       
+print()
+Answer = input("Enter any key to start the next game: ") 
+
+main()
