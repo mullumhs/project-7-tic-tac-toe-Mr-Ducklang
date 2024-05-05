@@ -1,5 +1,4 @@
 def main():
-    # Your code goes here
 
     #initialise
     def initialiseBoard():
@@ -31,6 +30,33 @@ def main():
                 print(column, end = '|')
             print()
 
+    #coordinate selection
+    def rowselection():
+            choice2 = input("Select a row (letter): ")
+
+            while choice2 != "A" and choice2 != "B" and choice2 != "C":
+                choice2 = input("Invalid Row! Please choose A, B or C: ")
+            if choice2 == "A":
+                return 0
+            if choice2 == "B":
+                return 1
+            if choice2 == "C":
+                return 2
+            
+    def columnselection():
+        choice = input(f"{player}, Select a column (number): ")
+
+        if choice.isdigit():
+         choice = int(choice)
+
+        while choice != 1 and choice != 2 and choice != 3:
+            choice = input(f"Invalid column! Select 1, 2 or 3: ")
+            if choice.isdigit():
+                choice = int(choice)
+            
+
+        return choice
+ 
     #WinCheck
     def checkwin(): 
         #first number is down. second is across
@@ -91,9 +117,11 @@ def main():
             player = "O"
 
         print()
-        choice = input(f"{player}, Select a column (number): ")
-        choice2 = input("Select a row (letter): ")
-
+        choice = columnselection()
+        choice2 = rowselection()
+        
+       
+                  
         print()
         choice -= 1
 
@@ -101,7 +129,7 @@ def main():
         if board[choice2][choice] == '-':
             board[choice2][choice] = token
             playercount += 1
-            break
+            
 
         displayBoard()
         if checkwin():
@@ -110,12 +138,8 @@ def main():
             break
         if CheckDraw():
             print()
-            print(f'Draw! No Winners!')
+            print('Draw! No Winners!')
             break  
-
-        
-
-    
 
 if __name__ == "__main__":
     main()
