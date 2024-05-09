@@ -33,9 +33,11 @@ def main():
     #coordinate selection
     def rowselection():
             choice2 = input("Select a row (letter): ")
+            choice2 = choice2.title()
 
             while choice2 != "A" and choice2 != "B" and choice2 != "C":
                 choice2 = input("Invalid Row! Please choose A, B or C: ")
+                choice2 = choice2.title()
             if choice2 == "A":
                 return 0
             if choice2 == "B":
@@ -100,16 +102,18 @@ def main():
 
         return True
 
+
+#setting up board
     board = []
     playercount = 1
     initialiseBoard()
     displayBoard()
 
-    #Selecting
+    
     
     while True:
 
-
+    #Selecting square
         token = "X"
         player = "X"
         if playercount % 2 == 0:
@@ -125,12 +129,12 @@ def main():
         print()
         choice -= 1
 
-    
+     #Placing token
         if board[choice2][choice] == '-':
             board[choice2][choice] = token
             playercount += 1
             
-
+    #wincheck + drawcheck
         displayBoard()
         if checkwin():
             print()
